@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3yt0tybymylk"]
+
+[ext_resource type="Script" path="res://src/network/network_client/network_client.gd" id="1_vkmbl"]
+
+[node name="NetworkClient" type="Node2D"]
+script = ExtResource("1_vkmbl")
