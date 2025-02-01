@@ -14,6 +14,10 @@ config/name="wizard_cats_wonderful_videogames"
 run/main_scene="res://src/stages/games_list/games_list.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
+[autoload]
+
+GameStore="*res://src/store/game_store.tscn"
+
 [display]
 
 window/size/viewport_width=1200

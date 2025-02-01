@@ -7,8 +7,6 @@ func _ready():
 	add_child(http_request)
 
 func get_request(url):
-	http_request.get
-
 	var error = http_request.request(url)
 	
 	if error != OK:
@@ -18,3 +16,17 @@ func get_request(url):
 	var response = await http_request.request_completed
 	
 	return response
+
+func post_request(url, body):
+	var headers = ["Content-Type: application/json"]
+
+	var error = http_request.request(url, headers, HTTPClient.METHOD_POST, body)
+	
+	if error != OK:
+		push_error("An error occurred in the HTTP request to: " + url + " with body: " + body)
+		return
+
+	var response = await http_request.request_completed
+	
+	return response
+
