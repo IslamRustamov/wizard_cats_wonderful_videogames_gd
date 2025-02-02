@@ -25,8 +25,7 @@ func build_games_list(games):
 	for game in games:
 		var button_pressed_handler = func():
 			GameStore.set_selected_game(game)
-			NavigationService.open_room_creation_screen()
-			#get_tree().change_scene_to_file("res://src/screens/room_creation/room_creation.tscn")
+			NavigationService.open_creating_room_screen()
 		
 		var button = $ButtonUtils.create_button(game.name, button_pressed_handler)
 		

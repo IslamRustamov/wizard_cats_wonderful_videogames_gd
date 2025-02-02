@@ -7,7 +7,8 @@ func get_games():
 	if response != null:
 		var body = get_response_body(response)
 		
-		return body.games
-	else:
-		return []
+		if body && body.has("games"):
+			return body.games
+
+	return []
 

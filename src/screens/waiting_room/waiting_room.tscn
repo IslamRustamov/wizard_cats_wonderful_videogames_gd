@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctglhyqqtd6rr"]
+[gd_scene load_steps=7 format=3 uid="uid://ctglhyqqtd6rr"]
 
 [ext_resource type="Script" path="res://src/screens/waiting_room/waiting_room.gd" id="1_0lir4"]
 [ext_resource type="PackedScene" uid="uid://dl4p6r0wd81bi" path="res://src/components/loader/loader.tscn" id="2_ue2bv"]
 [ext_resource type="FontFile" uid="uid://gwgx5sp0s20n" path="res://assets/fonts/fffforward.ttf" id="3_i3n8n"]
 [ext_resource type="PackedScene" uid="uid://bldb12i3jok17" path="res://src/components/copy_button/copy_button.tscn" id="3_mhwqx"]
+[ext_resource type="PackedScene" uid="uid://d4nve683ejjry" path="res://src/network/controllers/rooms_controller/rooms_controller.tscn" id="5_skwc1"]
+[ext_resource type="PackedScene" uid="uid://c3yt0tybymylk" path="res://src/network/network_client/network_client.tscn" id="6_nfx5a"]
 
 [node name="WaitingRoom" type="Node2D"]
 script = ExtResource("1_0lir4")
@@ -27,3 +29,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_i3n8n")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
+
+[node name="RoomsController" parent="." instance=ExtResource("5_skwc1")]
+
+[node name="NetworkClient" parent="." instance=ExtResource("6_nfx5a")]
