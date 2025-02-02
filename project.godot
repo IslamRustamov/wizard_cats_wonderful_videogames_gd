@@ -11,12 +11,16 @@ config_version=5
 [application]
 
 config/name="wizard_cats_wonderful_videogames"
-run/main_scene="res://src/stages/games_list/games_list.tscn"
+run/main_scene="res://src/screens/games_list/games_list.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [autoload]
 
-GameStore="*res://src/store/game_store.tscn"
+GameStore="*res://src/stores/game_store/game_store.tscn"
+ActionCable="*res://src/network/action_cable/action_cable.tscn"
+ConnectionStore="*res://src/stores/connection_store/connection_store.tscn"
+PlayerStore="*res://src/stores/player_store/player_store.tscn"
+NavigationService="*res://src/services/navigation_service/navigation_service.tscn"
 
 [display]
 

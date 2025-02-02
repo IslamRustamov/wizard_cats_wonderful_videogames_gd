@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byocbqyp32chn"]
+
+[ext_resource type="Script" path="res://src/stores/connection_store/connection_store.gd" id="1_a487w"]
+
+[node name="ConnectionStore" type="Node2D"]
+script = ExtResource("1_a487w")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctglhyqqtd6rr"]
+
+[ext_resource type="Script" path="res://src/screens/waiting_room/waiting_room.gd" id="1_0lir4"]
+[ext_resource type="PackedScene" uid="uid://dl4p6r0wd81bi" path="res://src/components/loader/loader.tscn" id="2_ue2bv"]
+[ext_resource type="FontFile" uid="uid://gwgx5sp0s20n" path="res://assets/fonts/fffforward.ttf" id="3_i3n8n"]
+[ext_resource type="PackedScene" uid="uid://bldb12i3jok17" path="res://src/components/copy_button/copy_button.tscn" id="3_mhwqx"]
+
+[node name="WaitingRoom" type="Node2D"]
+script = ExtResource("1_0lir4")
+
+[node name="Loader" parent="." instance=ExtResource("2_ue2bv")]
+
+[node name="CopyButton" parent="." instance=ExtResource("3_mhwqx")]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -27.5
+offset_right = 20.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i3n8n")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1

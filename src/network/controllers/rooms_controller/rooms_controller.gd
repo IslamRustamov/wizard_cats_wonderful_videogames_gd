@@ -8,11 +8,20 @@ func create_room(body):
 	
 	if response != null:
 		var response_body = get_response_body(response)
-		print(response_body)
 		
-		# TODO: CHANGE THIS
-		return null
+		return response_body
 	else:
 		return []
+
+func join_room(password):
+	var response = await network_client.get_request("http://127.0.0.1:3000/rooms/" + password)
+	
+	if response != null:
+		var response_body = get_response_body(response)
+		
+		return response_body
+	else:
+		return []
+
 
 
