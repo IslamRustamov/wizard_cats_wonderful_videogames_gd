@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkrqfphjo4uou"]
+
+[ext_resource type="Script" path="res://src/games/knucklebones/components/wizard_cat/wizard_cat.gd" id="1_320l8"]
+[ext_resource type="Texture2D" uid="uid://jku85efi1phr" path="res://src/games/knucklebones/assets/sprites/crocoboy/crocoboy_default.png" id="2_48aol"]
+[ext_resource type="Texture2D" uid="uid://bc6kj1nfixdjx" path="res://src/games/knucklebones/assets/sprites/crocoboy/crocoboy_smirk.png" id="3_a102a"]
+[ext_resource type="Texture2D" uid="uid://bhi7kyl5qnf56" path="res://src/games/knucklebones/assets/sprites/crocoboy/crocoboy_win.png" id="4_2xqvs"]
+[ext_resource type="Texture2D" uid="uid://dtb854ujts164" path="res://src/games/knucklebones/assets/sprites/crocoboy/crocoboy_lose.png" id="5_o3l4r"]
+[ext_resource type="Script" path="res://src/games/knucklebones/components/crocoboy/animated_sprite_2D.gd" id="6_2r5l2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ytbb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_48aol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a102a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2xqvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o3l4r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Crocoboy" type="Node2D"]
+script = ExtResource("1_320l8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 0.436332
+sprite_frames = SubResource("SpriteFrames_5ytbb")
+offset = Vector2(-5, -105)
+script = ExtResource("6_2r5l2")
+
+[node name="DebugButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 200)
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="DebugButton" to="." method="_on_debug_button_pressed"]

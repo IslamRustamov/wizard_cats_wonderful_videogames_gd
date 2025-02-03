@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bi83t4ybf4uqb"]
+[gd_scene load_steps=8 format=3 uid="uid://bi83t4ybf4uqb"]
 
 [ext_resource type="Script" path="res://src/games/knucklebones/components/wizard_cat/wizard_cat.gd" id="1_3wwxt"]
 [ext_resource type="Texture2D" uid="uid://bpvfnw5673q1m" path="res://src/games/knucklebones/assets/sprites/wizard_cat/wizard_cat_default.png" id="1_07ddj"]
 [ext_resource type="Texture2D" uid="uid://dmx0aqwc13s1n" path="res://src/games/knucklebones/assets/sprites/wizard_cat/wizard_cat_smirk.png" id="2_dltte"]
 [ext_resource type="Texture2D" uid="uid://csbei87gvslj8" path="res://src/games/knucklebones/assets/sprites/wizard_cat/wizard_cat_win.png" id="3_4iegl"]
 [ext_resource type="Texture2D" uid="uid://8547dx632ct7" path="res://src/games/knucklebones/assets/sprites/wizard_cat/wizard_cat_lose.png" id="4_uoy55"]
+[ext_resource type="Script" path="res://src/games/knucklebones/components/wizard_cat/animated_sprite_2D.gd" id="6_urr7e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ytbb"]
 animations = [{
@@ -26,100 +27,18 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="Animation" id="Animation_gfwmm"]
-resource_name = "idle"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 4
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1.51572, 1.51572),
-"update": 0,
-"values": [-0.436332, 0.436332]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ysyx3"]
-resource_name = "smirk"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.4),
-"transitions": PackedFloat32Array(1, 1.41421, 1.51571),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 2),
-"transitions": PackedFloat32Array(1, 1, 0.999999),
-"update": 0,
-"values": [-0.436332, 0.436332, -0.436332]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:frame")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0, 1, 0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_l8cvf"]
-_data = {
-"idle": SubResource("Animation_gfwmm"),
-"smirk": SubResource("Animation_ysyx3")
-}
-
 [node name="WizardCat" type="Node2D"]
-rotation = 5.84685
 script = ExtResource("1_3wwxt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-7, -106)
+rotation = -0.436332
 sprite_frames = SubResource("SpriteFrames_5ytbb")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_l8cvf")
-}
-speed_scale = 1.084
-blend_times = [&"smirk", &"lean_forward", 1.0, &"smirk", &"lean_backward", 1.0, &"return", &"idle", 1.0, &"return", &"smirk", 1.0, &"return", &"return", 1.0]
+offset = Vector2(-5, -105)
+script = ExtResource("6_urr7e")
 
 [node name="DebugButton" type="Button" parent="."]
 custom_minimum_size = Vector2(200, 200)
 offset_right = 8.0
 offset_bottom = 8.0
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_idle_animation_finished"]
 [connection signal="pressed" from="DebugButton" to="." method="_on_debug_button_pressed"]

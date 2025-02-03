@@ -5,11 +5,10 @@ func _ready():
 	$GamesController.inject_network_client($NetworkClient)
 	
 	var games = await get_games()
-	save_games(games)
-	build_games_list(games)
 	
-func save_games(games):
 	GameStore.set_games(games)
+	
+	build_games_list(games)
 
 func get_games():
 	$Loader.set_text("Loading list of games")
