@@ -1,14 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkub0jlm5stqt"]
+[gd_scene load_steps=10 format=3 uid="uid://dkub0jlm5stqt"]
 
 [ext_resource type="Script" path="res://src/games/knucklebones/screens/main_screen/main_screen.gd" id="1_pwvgw"]
 [ext_resource type="PackedScene" uid="uid://bi83t4ybf4uqb" path="res://src/games/knucklebones/components/wizard_cat/wizard_cat.tscn" id="1_rsi6m"]
+[ext_resource type="PackedScene" uid="uid://d1smldguuodl1" path="res://src/games/knucklebones/components/desk/desk.tscn" id="2_20o25"]
 [ext_resource type="PackedScene" uid="uid://bkrqfphjo4uou" path="res://src/games/knucklebones/components/crocoboy/crocoboy.tscn" id="2_fp2c4"]
+[ext_resource type="PackedScene" uid="uid://vgdjwq4lbhfm" path="res://src/games/knucklebones/stores/knucklebones_store/knucklebones_store.tscn" id="5_2mye0"]
+[ext_resource type="PackedScene" uid="uid://by0ag47s5wfrn" path="res://src/games/knucklebones/components/pointer/pointer.tscn" id="6_menkl"]
+[ext_resource type="Script" path="res://src/games/knucklebones/screens/main_screen/utils/score_drawer.gd" id="7_82lr1"]
+[ext_resource type="Script" path="res://src/games/knucklebones/screens/main_screen/utils/pointer_utils.gd" id="8_1v2s3"]
+[ext_resource type="Script" path="res://src/games/knucklebones/screens/main_screen/utils/dice_utils.gd" id="9_dmv6m"]
 
 [node name="MainScreen" type="Node2D"]
 script = ExtResource("1_pwvgw")
+
+[node name="Desk" parent="." instance=ExtResource("2_20o25")]
 
 [node name="WizardCat" parent="." instance=ExtResource("1_rsi6m")]
 position = Vector2(265, 1565)
 
 [node name="Crocoboy" parent="." instance=ExtResource("2_fp2c4")]
 position = Vector2(1380, 290)
+
+[node name="KnucklebonesStore" parent="." instance=ExtResource("5_2mye0")]
+
+[node name="Pointer" parent="." instance=ExtResource("6_menkl")]
+
+[node name="ScoreDrawer" type="Node2D" parent="."]
+script = ExtResource("7_82lr1")
+
+[node name="PointerUtils" type="Node2D" parent="."]
+script = ExtResource("8_1v2s3")
+
+[node name="DiceUtils" type="Node2D" parent="."]
+script = ExtResource("9_dmv6m")

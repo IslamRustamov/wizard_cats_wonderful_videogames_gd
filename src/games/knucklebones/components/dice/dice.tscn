@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpobysu2a57h3"]
+
+[ext_resource type="Script" path="res://src/games/knucklebones/components/dice/dice.gd" id="1_18lk2"]
+[ext_resource type="Texture2D" uid="uid://1s1cco073im" path="res://src/games/knucklebones/assets/sprites/dice/dice_1.png" id="1_ynxff"]
+[ext_resource type="Texture2D" uid="uid://dbaelc4yuwkm8" path="res://src/games/knucklebones/assets/sprites/dice/dice_2.png" id="2_6exw7"]
+[ext_resource type="Texture2D" uid="uid://6p7c6h7gcag" path="res://src/games/knucklebones/assets/sprites/dice/dice_3.png" id="3_hgtom"]
+[ext_resource type="Texture2D" uid="uid://djkqwokckr42f" path="res://src/games/knucklebones/assets/sprites/dice/dice_4.png" id="4_2lp4a"]
+[ext_resource type="Texture2D" uid="uid://chmxqj1ho1kre" path="res://src/games/knucklebones/assets/sprites/dice/dice_5.png" id="5_s3ccu"]
+[ext_resource type="Texture2D" uid="uid://bmpmaennik77y" path="res://src/games/knucklebones/assets/sprites/dice/dice_6.png" id="6_g3d4n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2f20o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ynxff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6exw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hgtom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2lp4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s3ccu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g3d4n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Dice" type="Node2D"]
+script = ExtResource("1_18lk2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2f20o")

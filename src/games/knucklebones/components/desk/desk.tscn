@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1smldguuodl1"]
+
+[ext_resource type="Script" path="res://src/games/knucklebones/components/desk/desk.gd" id="1_3x1f8"]
+
+[node name="Desk" type="Node2D"]
+script = ExtResource("1_3x1f8")
+
+[node name="ColumnOne" type="Node2D" parent="."]
+
+[node name="ColumnTwo" type="Node2D" parent="."]
+
+[node name="ColumnThree" type="Node2D" parent="."]

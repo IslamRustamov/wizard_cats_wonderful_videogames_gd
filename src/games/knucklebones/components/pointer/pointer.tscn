@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://by0ag47s5wfrn"]
+
+[ext_resource type="Texture2D" uid="uid://bma56n4m3ljqm" path="res://src/games/knucklebones/assets/sprites/pointer/pointer.png" id="1_esvt2"]
+
+[node name="Pointer" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_esvt2")

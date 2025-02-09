@@ -13,4 +13,5 @@ func _ready():
 	$DebugButton.position.y = position.y - 400
 
 func _on_debug_button_pressed():
+	queue_redraw()
 	$AnimatedSprite2D.run_smirk_tween()
