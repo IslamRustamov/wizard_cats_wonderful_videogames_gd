@@ -23,7 +23,7 @@ func get_request(url):
 	push_error("An error occurred in the GET request to: " + url)
 	return
 
-func post_request(url, body):
+func post_request(url, body = "{}"):
 	var error = http_request.request(url, headers, HTTPClient.METHOD_POST, body)
 	
 	if error != OK:

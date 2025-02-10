@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctglhyqqtd6rr"]
+[gd_scene load_steps=8 format=3 uid="uid://ctglhyqqtd6rr"]
 
 [ext_resource type="Script" path="res://src/screens/waiting_room/waiting_room.gd" id="1_0lir4"]
+[ext_resource type="PackedScene" uid="uid://c4x3uoe7gkips" path="res://src/services/persistent_storage/persistent_storage.tscn" id="2_50vsw"]
 [ext_resource type="PackedScene" uid="uid://dl4p6r0wd81bi" path="res://src/components/loader/loader.tscn" id="2_ue2bv"]
 [ext_resource type="FontFile" uid="uid://gwgx5sp0s20n" path="res://assets/fonts/fffforward.ttf" id="3_i3n8n"]
 [ext_resource type="PackedScene" uid="uid://bldb12i3jok17" path="res://src/components/copy_button/copy_button.tscn" id="3_mhwqx"]
@@ -9,6 +10,8 @@
 
 [node name="WaitingRoom" type="Node2D"]
 script = ExtResource("1_0lir4")
+
+[node name="PersistentStorage" parent="." instance=ExtResource("2_50vsw")]
 
 [node name="Loader" parent="." instance=ExtResource("2_ue2bv")]
 

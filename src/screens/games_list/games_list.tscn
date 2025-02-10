@@ -1,18 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5wvmf1ycej0u"]
+[gd_scene load_steps=9 format=3 uid="uid://c5wvmf1ycej0u"]
 
 [ext_resource type="Script" path="res://src/screens/games_list/games_list.gd" id="1_f7mjy"]
 [ext_resource type="PackedScene" uid="uid://c3yt0tybymylk" path="res://src/network/network_client/network_client.tscn" id="2_1ad20"]
+[ext_resource type="PackedScene" uid="uid://c4x3uoe7gkips" path="res://src/services/persistent_storage/persistent_storage.tscn" id="2_2olxg"]
 [ext_resource type="PackedScene" uid="uid://dfmmc31q48csx" path="res://src/utils/buttons/ButtonUtils.tscn" id="2_x2d0e"]
 [ext_resource type="PackedScene" uid="uid://cw4jcbx6s5qi7" path="res://src/network/controllers/games_controller/games_controller.tscn" id="3_46gay"]
 [ext_resource type="PackedScene" uid="uid://dl4p6r0wd81bi" path="res://src/components/loader/loader.tscn" id="4_4px7a"]
 [ext_resource type="PackedScene" uid="uid://dtpamqjs6bu2r" path="res://src/components/list/list.tscn" id="5_b7pn2"]
+[ext_resource type="PackedScene" uid="uid://ccjsixpco6oa3" path="res://src/network/controllers/players_controller/players_controller.tscn" id="5_rb0u8"]
 
 [node name="GamesList" type="Node2D"]
 script = ExtResource("1_f7mjy")
 
+[node name="PersistentStorage" parent="." instance=ExtResource("2_2olxg")]
+
 [node name="ButtonUtils" parent="." instance=ExtResource("2_x2d0e")]
 
 [node name="NetworkClient" parent="." instance=ExtResource("2_1ad20")]
+
+[node name="PlayersController" parent="." instance=ExtResource("5_rb0u8")]
 
 [node name="GamesController" parent="." instance=ExtResource("3_46gay")]
 

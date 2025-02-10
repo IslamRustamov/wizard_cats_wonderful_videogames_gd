@@ -3,6 +3,7 @@ class_name WaitingRoom
 
 func _ready():
 	$RoomsController.inject_network_client($NetworkClient)
+	$RoomsController.inject_persistent_storage($PersistentStorage)
 
 	hide_room_key_ui()
 

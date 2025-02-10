@@ -2,9 +2,13 @@ extends Node2D
 class_name Controller
 
 var network_client: NetworkClient
+var persistent_storage: PersistentStorage
 
 func inject_network_client(new_network_client):
 	network_client = new_network_client
+	
+func inject_persistent_storage(new_persistent_storage):
+	persistent_storage = new_persistent_storage
 
 func get_response_body(response):
 	var json = JSON.new()

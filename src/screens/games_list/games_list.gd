@@ -3,6 +3,9 @@ class_name GamesList
 
 func _ready():
 	$GamesController.inject_network_client($NetworkClient)
+	$PlayersController.inject_network_client($NetworkClient)
+	
+	await init_player()
 	
 	var games = await get_games()
 	
@@ -10,9 +13,23 @@ func _ready():
 	
 	build_games_list(games)
 
+func init_player():
+	$Loader.set_text("Initialising player")
+	$Loader.show_loader()
+	
+	var player_id = $PersistentStorage.get_id()
+	
+	if player_id == null:
+		player_id = await $PlayersController.create_player()
+		
+		print(player_id)
+		
+		$PersistentStorage.save_id(player_id)
+	else:
+		print("found id, its ", player_id)
+
 func get_games():
 	$Loader.set_text("Loading list of games")
-	$Loader.show_loader()
 	
 	var games = await $GamesController.get_games()
 	

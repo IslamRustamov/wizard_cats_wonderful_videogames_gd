@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4x3uoe7gkips"]
+
+[ext_resource type="Script" path="res://src/services/persistent_storage/persistent_storage.gd" id="1_hdsue"]
+
+[node name="PersistentStorage" type="Node2D"]
+script = ExtResource("1_hdsue")
