@@ -14,9 +14,9 @@ func _ready():
 	
 	init_players()
 	
-	init_pointer()
+	#init_pointer()
 	
-	init_dice()
+	#init_dice()
 	
 	$ScoreDrawer.set_store($KnucklebonesStore)
 	
@@ -40,7 +40,7 @@ func init_players():
 	$WizardCat.position.y = get_viewport_rect().size.y - VERTICAL_OFFSET
 	
 	$Crocoboy.position.x = get_viewport_rect().size.x - HORIZONTAL_OFFSET
-	$Crocoboy.position.y = get_viewport_rect().size.y - VERTICAL_OFFSET
+	$Crocoboy.position.y = VERTICAL_OFFSET
 
 func init_pointer():
 	$Pointer.hide()

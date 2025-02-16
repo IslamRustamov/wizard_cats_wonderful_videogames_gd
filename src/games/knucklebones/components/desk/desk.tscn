@@ -1,12 +1,74 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1smldguuodl1"]
+[gd_scene load_steps=3 format=3 uid="uid://d1smldguuodl1"]
 
 [ext_resource type="Script" path="res://src/games/knucklebones/components/desk/desk.gd" id="1_3x1f8"]
+[ext_resource type="PackedScene" uid="uid://g1yyywujt6ly" path="res://src/games/knucklebones/components/column/column.tscn" id="2_unxof"]
 
 [node name="Desk" type="Node2D"]
 script = ExtResource("1_3x1f8")
 
-[node name="ColumnOne" type="Node2D" parent="."]
+[node name="CrocoboysTable" type="Node2D" parent="."]
 
-[node name="ColumnTwo" type="Node2D" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="CrocoboysTable"]
+custom_minimum_size = Vector2(1600, 700)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+offset_right = 1600.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ColumnThree" type="Node2D" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="CrocoboysTable/CenterContainer"]
+custom_minimum_size = Vector2(1600, 700)
+layout_mode = 2
+theme_override_constants/separation = 280
+alignment = 1
+
+[node name="Control" type="Control" parent="CrocoboysTable/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColumnOne" parent="CrocoboysTable/CenterContainer/HBoxContainer/Control" instance=ExtResource("2_unxof")]
+
+[node name="Control2" type="Control" parent="CrocoboysTable/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColumnTwo" parent="CrocoboysTable/CenterContainer/HBoxContainer/Control2" instance=ExtResource("2_unxof")]
+
+[node name="Control3" type="Control" parent="CrocoboysTable/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColumnThree" parent="CrocoboysTable/CenterContainer/HBoxContainer/Control3" instance=ExtResource("2_unxof")]
+
+[node name="WizardCatsTable" type="Node2D" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="WizardCatsTable"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1100.0
+offset_right = 1600.0
+offset_bottom = 1800.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WizardCatsTable/CenterContainer"]
+custom_minimum_size = Vector2(1600, 700)
+layout_mode = 2
+theme_override_constants/separation = 280
+alignment = 1
+
+[node name="Control" type="Control" parent="WizardCatsTable/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColumnOne" parent="WizardCatsTable/CenterContainer/HBoxContainer/Control" instance=ExtResource("2_unxof")]
+
+[node name="Control2" type="Control" parent="WizardCatsTable/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColumnTwo" parent="WizardCatsTable/CenterContainer/HBoxContainer/Control2" instance=ExtResource("2_unxof")]
+
+[node name="Control3" type="Control" parent="WizardCatsTable/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColumnThree" parent="WizardCatsTable/CenterContainer/HBoxContainer/Control3" instance=ExtResource("2_unxof")]
