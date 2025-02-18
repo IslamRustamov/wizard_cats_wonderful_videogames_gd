@@ -1,35 +1,37 @@
 extends Node2D
 class_name PointerUtils
 
-var parent = null
-var pointer = null
-var possible_positions = null
+var pointer_scene = preload("res://src/games/knucklebones/components/pointer/pointer.tscn")
+var pointer_instance = null
 
-func set_parent(new_parent):
-	parent = new_parent
+func create_pointer():
+	var columns: Array[Column] = get_parent().desk_utils.get_columns()
 	
-func set_pointer(new_pointer):
-	pointer = new_pointer
-
-func set_possible_positions(new_possible_positions):
-	possible_positions = new_possible_positions
-
-func move_pointer_left():
-	if parent.current_pointer_position == 1:
-		parent.current_pointer_position = 3
-	else:
-		parent.current_pointer_position = parent.current_pointer_position - 1
+	pointer_instance = pointer_scene.instantiate()
 	
-	update_pointer_scene_position()
+	columns[get_parent().current_pointer_position - 1].set_pointer(pointer_instance, get_parent().store.is_crocoboys_move())
 
 func move_pointer_right():
-	if parent.current_pointer_position == 3:
-		parent.current_pointer_position = 1
-	else:
-		parent.current_pointer_position = parent.current_pointer_position + 1
+	var columns: Array[Column] = get_parent().desk_utils.get_columns()
 	
-	update_pointer_scene_position()
+	columns[get_parent().current_pointer_position - 1].remove_pointer(pointer_instance)
+	
+	if get_parent().current_pointer_position == 3:
+		get_parent().current_pointer_position = 1
+	else:
+		get_parent().current_pointer_position = get_parent().current_pointer_position + 1
 
-func update_pointer_scene_position():
-	pointer.position.x = possible_positions[parent.current_pointer_position - 1].x
-	pointer.position.y = possible_positions[parent.current_pointer_position - 1].y
+	columns[get_parent().current_pointer_position - 1].set_pointer(pointer_instance, get_parent().store.is_crocoboys_move())
+	
+func move_pointer_left():
+	var columns: Array[Column] = get_parent().desk_utils.get_columns()
+	
+	columns[get_parent().current_pointer_position - 1].remove_pointer(pointer_instance)
+	
+	if get_parent().current_pointer_position == 1:
+		get_parent().current_pointer_position = 3
+	else:
+		get_parent().current_pointer_position = get_parent().current_pointer_position - 1
+
+	columns[get_parent().current_pointer_position - 1].set_pointer(pointer_instance, get_parent().store.is_crocoboys_move())
+	

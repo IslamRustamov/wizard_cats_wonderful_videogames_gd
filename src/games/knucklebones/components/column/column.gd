@@ -11,7 +11,7 @@ var column_width = 200
 var column_height = 600
 var line_width = 10
 
-@export var debug = true
+@export var debug = false
 var debug_dice_id = 0
 
 func _input(event):
@@ -24,21 +24,24 @@ func _input(event):
 			add_dice(dice)
 
 			debug_dice_id += 1
+			
+func can_add_dice():
+	return dices.size() < MAX_DICES
 
 func add_dice(new_dice: Dice):
-	if dices.size() == MAX_DICES:
+	if !can_add_dice():
 		return
 
 	add_child(new_dice)
 	
-	new_dice.position.x = column_width / 2
+	new_dice.global_position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 2)
 	
-	if dices.size() == 0:
-		new_dice.position.y = 100
-	elif dices.size() == 1:
-		new_dice.position.y = 300
-	elif dices.size() == 2:
-		new_dice.position.y = 500
+	var vector = Vector2.ZERO
+	
+	vector.x = global_position.x + column_width / 2
+	vector.y = global_position.y + 100 + dices.size() * 200
+		
+	new_dice.play_dice_adding_animation(vector)
 		
 	dices.push_back(new_dice)
 	
@@ -72,7 +75,19 @@ func recalculate_score():
 			score += sum * dict[key].occurences
 		else:
 			score += dict[key].weight
-		
+
+func set_pointer(pointer: Pointer, is_inverted = false):	
+	if is_inverted:
+		pointer.position = Vector2(column_width / 2, column_height + 64)
+		pointer.scale.y = -1
+	else:
+		pointer.position = Vector2(column_width / 2, -64)
+	
+	add_child(pointer)
+
+func remove_pointer(pointer: Pointer):
+	remove_child(pointer)
+
 func _draw():
 	draw_rect(
 		Rect2(

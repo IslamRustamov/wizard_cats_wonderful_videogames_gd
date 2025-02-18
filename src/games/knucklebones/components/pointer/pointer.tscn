@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://by0ag47s5wfrn"]
+[gd_scene load_steps=3 format=3 uid="uid://by0ag47s5wfrn"]
 
+[ext_resource type="Script" path="res://src/games/knucklebones/components/pointer/pointer.gd" id="1_6t0kh"]
 [ext_resource type="Texture2D" uid="uid://bma56n4m3ljqm" path="res://src/games/knucklebones/assets/sprites/pointer/pointer.png" id="1_esvt2"]
 
 [node name="Pointer" type="Node2D"]
+script = ExtResource("1_6t0kh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_esvt2")

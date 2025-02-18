@@ -15,3 +15,6 @@ func _ready():
 func _on_debug_button_pressed():
 	queue_redraw()
 	$AnimatedSprite2D.run_smirk_tween()
+
+func run_smirk_tween():
+	$AnimatedSprite2D.run_smirk_tween()
