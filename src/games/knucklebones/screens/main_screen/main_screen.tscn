@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkub0jlm5stqt"]
+[gd_scene load_steps=11 format=3 uid="uid://dkub0jlm5stqt"]
 
 [ext_resource type="Script" path="res://src/games/knucklebones/screens/main_screen/main_screen.gd" id="1_pwvgw"]
 [ext_resource type="PackedScene" uid="uid://bi83t4ybf4uqb" path="res://src/games/knucklebones/components/wizard_cat/wizard_cat.tscn" id="1_rsi6m"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://src/games/knucklebones/screens/main_screen/utils/pointer_utils.gd" id="8_1v2s3"]
 [ext_resource type="Script" path="res://src/games/knucklebones/screens/main_screen/utils/dice_utils.gd" id="9_dmv6m"]
 [ext_resource type="Script" path="res://src/games/knucklebones/screens/main_screen/utils/desk_utils.gd" id="9_wmmjd"]
+[ext_resource type="PackedScene" uid="uid://bb675fvxew824" path="res://src/network/action_cable/action_cable.tscn" id="10_yk7ow"]
 
 [node name="MainScreen" type="Node2D"]
 script = ExtResource("1_pwvgw")
@@ -34,3 +35,5 @@ script = ExtResource("9_dmv6m")
 
 [node name="DeskUtils" type="Node2D" parent="."]
 script = ExtResource("9_wmmjd")
+
+[node name="ActionCable" parent="." instance=ExtResource("10_yk7ow")]

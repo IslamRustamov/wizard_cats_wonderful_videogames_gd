@@ -15,7 +15,10 @@ func connect_to_url(player_id):
 
 func subscribe_to_room(room_id):
 	socket.send_text(create_websocket_message("subscribe", {"channel": "RoomChannel", "room_id": room_id}))
-	
+
+func send_game_step(room_id, data):
+	socket.send_text(create_websocket_message("message", {"channel": "RoomChannel", "room_id": room_id}, data))
+
 func create_websocket_message(command, identifier, data = null):
 	return JSON.stringify({
 		"command": command,

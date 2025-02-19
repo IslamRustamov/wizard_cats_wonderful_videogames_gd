@@ -14,9 +14,9 @@ var current_pointer_position = 1
 
 # TODO: надо подумать это вообще норм тема или нет
 # там просто много get_parent() вызывается
-@onready var dice_utils = $DiceUtils
-@onready var desk_utils = $DeskUtils
-@onready var pointer_utils = $PointerUtils
+@onready var dice_utils: DiceUtils = $DiceUtils
+@onready var desk_utils: DeskUtils = $DeskUtils
+@onready var pointer_utils: PointerUtils = $PointerUtils
 
 func _ready():
 	randomize()
@@ -24,15 +24,16 @@ func _ready():
 	init_players()
 	
 	score_drawer.set_store(store)
-	
-	# TODO: write logic to assign specific user to a character
 
 func _input(_ev):
-	# if IS YOUR MOVE then allow these stuff, otherwise dont
-	#if $KnucklebonesStore.is_wizards_cats_move() && true:
-		#return
-	#if $KnucklebonesStore.is_crocoboys_move() && true:
-		#return
+	var am_i_wizard_cat = PlayerStore.get_player_id() == ConnectionStore.get_connected_players_ids()[0]
+	
+	if am_i_wizard_cat && !store.is_wizards_cats_move():
+		return
+
+	# !am_i_wizard_cat === crocoboy
+	if !am_i_wizard_cat && !store.is_crocoboys_move():
+		return
 
 	if store.is_in_throwing_state():
 		if Input.is_action_just_released("Action"):
@@ -58,10 +59,7 @@ func put_dice():
 	if !columns[current_pointer_position - 1].can_add_dice():
 		return
 	
-	if store.is_wizards_cats_move():
-		wizard_cat.run_smirk_tween()
-	else:
-		crocoboy.run_smirk_tween()
+	run_smirk_tween()
 	
 	columns[current_pointer_position - 1].remove_pointer(pointer_utils.pointer_instance)
 	
@@ -73,6 +71,23 @@ func put_dice():
 	
 	store.set_current_state(store.State.THROWING)
 	
+	change_current_player()
+		
+	current_pointer_position = 1
+	
+	# ТЫ БРОСИЛ ТУТ
+	# 1. нужно отправлять все необходимые данные о шаге
+	#    - куда положил кость и какую
+	# 2. нужно принимать ответ от бэка
+	ActionCable.send_game_step(GameStore.get_room_id(), {"HELLOOOO": "HIIIII"})
+	
+func run_smirk_tween():
+	if store.is_wizards_cats_move():
+		wizard_cat.run_smirk_tween()
+	else:
+		crocoboy.run_smirk_tween()
+
+func change_current_player():
 	if store.is_wizards_cats_move():
 		store.set_current_player(store.Players.CROCOBOY)
 	else:
