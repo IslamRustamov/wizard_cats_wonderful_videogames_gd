@@ -2,6 +2,8 @@ extends Controller
 
 var socket = WebSocketPeer.new()
 
+signal game_step(message)
+
 func _ready():
 	set_process(false)
 
@@ -42,11 +44,13 @@ func _process(_delta):
 				pass
 			elif body.has("type") && body.type == "welcome":
 				handle_connection_to_websocket_message()
-			elif body.has("message"):
+			elif body.has("message") && body.message.has("type"):
 				if body.message.type == "player_connected":
 					handle_game_start_message(body.message)
 				elif body.message.type == "player_left":
 					handle_player_left_message(body.message)
+				elif body.message.type == "game_step":
+					handle_game_step(body.message)
 	elif state == WebSocketPeer.STATE_CLOSING:
 		pass
 	elif state == WebSocketPeer.STATE_CLOSED:
@@ -60,6 +64,9 @@ func handle_connection_to_websocket_message():
 	
 func handle_game_start_message(message):
 	ConnectionStore.set_connected_players_ids(message.data.player_ids)
+
+func handle_game_step(message):
+	game_step.emit(message)
 
 func handle_player_left_message(_message):
 	pass

@@ -24,6 +24,8 @@ func _ready():
 	init_players()
 	
 	score_drawer.set_store(store)
+	
+	ActionCable.connect("game_step", _on_action_cable_game_step)
 
 func _input(_ev):
 	var am_i_wizard_cat = PlayerStore.get_player_id() == ConnectionStore.get_connected_players_ids()[0]
@@ -68,24 +70,34 @@ func put_dice():
 	remove_child(dice_utils.dice_instance)
 	
 	columns[current_pointer_position - 1].add_dice(dice_utils.dice_instance)
+
+	ActionCable.send_game_step(
+		GameStore.get_room_id(), 
+		{
+			"type": "game_step", 
+			"dice_weight": dice_utils.dice_instance.get_dice_weight(),
+			"column_number": current_pointer_position - 1,
+			"move_by": PlayerStore.get_player_id()
+		}
+	)
 	
 	store.set_current_state(store.State.THROWING)
 	
 	change_current_player()
-		
+	
 	current_pointer_position = 1
 	
-	# ТЫ БРОСИЛ ТУТ
-	# 1. нужно отправлять все необходимые данные о шаге
-	#    - куда положил кость и какую
-	# 2. нужно принимать ответ от бэка
-	ActionCable.send_game_step(GameStore.get_room_id(), {"HELLOOOO": "HIIIII"})
-	
-func run_smirk_tween():
+func run_smirk_tween():		
 	if store.is_wizards_cats_move():
 		wizard_cat.run_smirk_tween()
 	else:
 		crocoboy.run_smirk_tween()
+
+func run_enemy_smirk_tween():		
+	if store.is_wizards_cats_move():
+		crocoboy.run_smirk_tween()
+	else:
+		wizard_cat.run_smirk_tween()
 
 func change_current_player():
 	if store.is_wizards_cats_move():
@@ -99,4 +111,29 @@ func throw_dice():
 	store.set_current_state(store.State.SELECTING_COLUMN)
 	
 	pointer_utils.create_pointer()
+	
+	
+func put_enemy_dice(column_number: int):
+	var columns: Array[Column] = desk_utils.get_columns()
+	
+	run_smirk_tween()
+	
+	remove_child(dice_utils.dice_instance)
+	
+	columns[column_number].add_dice(dice_utils.dice_instance)
+	
+	store.set_current_state(store.State.THROWING)
+	
+	change_current_player()
 
+func _on_action_cable_game_step(message: Dictionary):
+	# I don't want to react to my own move
+	if message.has("move_by"):
+		if message["move_by"] == PlayerStore.get_player_id():
+			return
+
+	# I want to react to enemy's move
+	if message.has("dice_weight") && message.has("column_number"):
+		dice_utils.create_enemy_dice(message["dice_weight"])
+		
+		put_enemy_dice(message["column_number"])
