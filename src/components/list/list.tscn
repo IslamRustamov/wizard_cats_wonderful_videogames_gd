@@ -1,25 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtpamqjs6bu2r"]
+[gd_scene load_steps=3 format=3 uid="uid://dtpamqjs6bu2r"]
 
 [ext_resource type="Script" path="res://src/components/list/list.gd" id="1_88cp8"]
+[ext_resource type="PackedScene" uid="uid://c7runagplsibv" path="res://src/components/game_button/game_button.tscn" id="2_0qsvc"]
 
-[node name="List" type="Node2D"]
-script = ExtResource("1_88cp8")
-
-[node name="Control" type="Control" parent="."]
+[node name="GamesList" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+script = ExtResource("1_88cp8")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+custom_minimum_size = Vector2(2.08165e-12, 620)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1800, 600)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 33
 alignment = 1
+
+[node name="Button" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_0qsvc")]
+visible = false
+layout_mode = 2

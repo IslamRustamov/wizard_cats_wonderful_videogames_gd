@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://c7runagplsibv"]
+
+[ext_resource type="Script" path="res://src/components/game_button/game_button.gd" id="1_dlkob"]
+[ext_resource type="Texture2D" uid="uid://bpvfnw5673q1m" path="res://src/games/knucklebones/assets/sprites/wizard_cat/wizard_cat_default.png" id="1_m6nan"]
+[ext_resource type="FontFile" uid="uid://gwgx5sp0s20n" path="res://assets/fonts/fffforward.ttf" id="2_pcqpu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wnes"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a42c"]
+bg_color = Color(0.6, 0.6, 0.6, 0.254902)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_735pu"]
+bg_color = Color(0.6, 0.6, 0.6, 0.14902)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6ke8"]
+bg_color = Color(0.6, 0.6, 0.6, 0.14902)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_biqqq"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="GameButton" type="Button"]
+custom_minimum_size = Vector2(500, 600)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5wnes")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1a42c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_735pu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_a6ke8")
+script = ExtResource("1_dlkob")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+custom_minimum_size = Vector2(500, 600)
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 600.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_biqqq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 600.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_m6nan")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_pcqpu")
+theme_override_font_sizes/font_size = 40
+text = "Knucklebones"

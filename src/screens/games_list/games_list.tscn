@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dtpamqjs6bu2r" path="res://src/components/list/list.tscn" id="5_b7pn2"]
 [ext_resource type="PackedScene" uid="uid://ccjsixpco6oa3" path="res://src/network/controllers/players_controller/players_controller.tscn" id="5_rb0u8"]
 
-[node name="GamesList" type="Node2D"]
+[node name="GamesListScreen" type="Node2D"]
 script = ExtResource("1_f7mjy")
 
 [node name="PersistentStorage" parent="." instance=ExtResource("2_2olxg")]
@@ -25,4 +25,15 @@ script = ExtResource("1_f7mjy")
 [node name="Loader" parent="." instance=ExtResource("4_4px7a")]
 position = Vector2(125, 182)
 
-[node name="List" parent="." instance=ExtResource("5_b7pn2")]
+[node name="Panel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1800.0
+offset_bottom = 1800.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GamesList" parent="Panel" instance=ExtResource("5_b7pn2")]
+layout_mode = 1
